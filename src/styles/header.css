@@ -1,0 +1,31 @@
+
+.header {
+    border: 1px solid transparent;
+    /* background-color: #fffef8; */
+    font-size: 20px;
+}
+
+.header .header-inner {
+    width: 80%;
+    margin: auto;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0);
+    justify-content: space-between;
+}
+
+.header .header-item {
+    flex: 1;
+}
+
+.header .navbar_wishlist-and-cart i {
+    margin: 0 1rem;
+}
+.header .navbar_wishlist-and-cart {
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.logo {
+    font-family: 'Gilda Display', serif;
+    font-size: 4rem;
+}

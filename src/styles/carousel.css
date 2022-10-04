@@ -1,0 +1,13 @@
+.homepage_product-slider {
+    width: 70%;
+    margin: 0 auto;
+    /* background-color: rgba(148, 170, 231, 0.356); */
+}
+
+.slick-prev:before, .slick-next:before {
+    color: rgba(0, 0, 0, 0.651) !important;
+}
+
+.slick-slide {
+    margin: 0 1rem;
+}
