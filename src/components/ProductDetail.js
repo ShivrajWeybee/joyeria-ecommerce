@@ -5,6 +5,15 @@ import { fetchApis, fetchProductData } from '../redux/action';
 
 function ProductDetail({ productData, fetchProduct }) {
 
+    const handleAddToCart = () => {
+        console.log(productData.cart)
+        console.log("add to cart");
+        productData.cart.length === 0 ? productData.cart.push({ Item: productData.productData.data, Quantity: 1 }) :
+            (productData.cart.find(item => item.Item.id === productData.productData.data.id)) ? console.log("hh") : productData.cart.push({ Item: productData.productData.data, Quantity: 1 })
+        console.log("Item Added to the Cart")
+        console.log(productData.cart);
+    }
+
     const param = useParams();
     const [productId, setproductId] = useState(param.productId);
 
@@ -24,7 +33,7 @@ function ProductDetail({ productData, fetchProduct }) {
             {
                 productData.loading ? <p>Loading...</p> :
                     productData.productData?.data ?
-                        <div className='productDetail-container flex'>
+                        <div className='productDetail-container flex page-width'>
                             <div className='product-img_container'>
                                 <img
                                     src={productData.productData.data.base_image.large_image_url}
@@ -36,22 +45,14 @@ function ProductDetail({ productData, fetchProduct }) {
                                 <p className='product-price'>{productData.productData.data.formated_price}</p>
                                 <hr />
                                 <p className='product-desc'>{productData.productData.data.description}</p>
-                                <button className='product-btn'>Add to Cart</button>
+                                <p className={productData.productData.data.in_stock ? 'inStock' : 'outOfStock'}>{productData.productData.data.in_stock ? 'currently in stock' : 'out of stock'}</p>
+                                <button
+                                    className='product-btn'
+                                    disabled={!productData.productData.data.in_stock}
+                                    onClick={handleAddToCart}
+                                >Add to Cart</button>
                                 <button className='product-btn'>Add to favourite</button>
                             </div>
-                            {/* <p>
-                            {
-                                productData.apiData.data.categories[0].category_id
-                            }
-                        </p> */}
-                            {/* <img src={props.productData.apiData.data.base_image.medium_image_url} alt='product' /> */}
-                            {/* <h2>{props.productData.apiData.data.name}</h2>
-                        <p>{props.productData.apiData.data.name}</p>
-                        <p>{props.productData.apiData.data.description}</p>
-                        <p>{props.productData.apiData.data.reviews.total_rating}</p>
-                        {
-                            props.productData.apiData.data.categories.map((category, index) => <p key={index}>{category.name}</p>)
-                        } */}
                         </div> : ''
             }
         </div>

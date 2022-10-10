@@ -1,0 +1,14 @@
+.cart-item-container {
+    border: 1px solid red;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.quantity-control {
+    cursor: pointer;
+    border: 1px solid yellowgreen;
+}
+
+.quantity-control a {
+    margin: 0 1rem;
+}

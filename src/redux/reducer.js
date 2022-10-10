@@ -1,11 +1,15 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_DATA_OF_CATEGORY } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER } from "./actionTypes";
 
 const initialState = {
     loading: true,
     apiData: [],
     error: '',
     categoryData: [],
-    productData: []
+    productData: [],
+    categoryProducts: [],
+    cart: [],
+    favourite: [],
+    banners: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -28,6 +32,9 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 apiData: [],
+                categoryData: [],
+                productData: [],
+                categoryProducts: [],
                 error: action.payload,
             }
 
@@ -43,6 +50,20 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 categoryData: action.payload,
+            }
+
+        case FETCH_PRODUCTS_FROM_CATEGORY:
+            return {
+                ...state,
+                loading: false,
+                categoryProducts: action.payload,
+            }
+
+        case FETCH_HOMEPAGE_BANNER:
+            return {
+                ...state,
+                loading: false,
+                banners: action.payload,
             }
 
         default:

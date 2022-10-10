@@ -1,11 +1,7 @@
 .category-menu {
     /* background-color: #fffef8; */
     margin-bottom: 3rem;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-}
-.category-menu nav {
-    width: 80%;
-    margin: auto;
+    border-bottom: 0.01rem solid rgba(180, 180, 180, 0.247);
 }
 .category-menu ul {
     margin: 0;

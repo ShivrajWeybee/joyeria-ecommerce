@@ -1,24 +1,46 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import { useSearchParams } from 'react-router-dom'
-import { fetchApis } from '../redux/action'
+import { Link, useSearchParams } from 'react-router-dom'
+import { fetchProductsFromCategoryAction } from '../redux/action'
+import { ProductCard } from './ProductCard';
 
-let searchParamAll;
+let keyS;
+let valueS;
 
-function Products(props) {
-
-    useEffect(() => {
-        props.fetchProductOrCategory()
-    }, [])
+function Products({ product, fetchProductOrCategory }) {
 
     const [searchParam, setSearchParam] = useSearchParams()
-    searchParamAll = searchParam.get('category_id');
+    console.log(Object.fromEntries([...searchParam]))
+    for (let [key, value] of Object.entries(Object.fromEntries([...searchParam]))) {
+        keyS = key;
+        valueS = value;
+    }
+
+    console.log(product.categoryProducts.data)
+
+    useEffect(() => {
+        fetchProductOrCategory()
+    }, [searchParam])
 
     return (
-        <div>
+        <div className='page-width'>
             {
-                searchParam.get('category_id') ? <h1>{`showing products of category id ${searchParam.get('category_id')}`}</h1> : <h1>No Listing</h1>
+                searchParam.get(`${keyS}`) ? <h1>{`showing products of ${keyS} ${searchParam.get(keyS)}`}</h1> : <h1>No Listing</h1>
             }
+            <div className='all-products_container'>
+                {
+                    product.loading ? 'loading...' :
+                        product && product?.categoryProducts?.data?.length ?
+                            product.categoryProducts.data.map((product, index) =>
+                                <Link
+                                    key={index}
+                                    to={`${product.id}`}>
+                                    <ProductCard imgUrl={product.base_image.medium_image_url} price={product.formated_price} />
+                                </Link>
+                            ) :
+                            "There's no product for this category"
+                }
+            </div>
         </div>
     )
 }
@@ -31,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchProductOrCategory: () => dispatch(fetchApis(`https://kamaraapi.weybee.in/api/products?category_id=${searchParamAll}}`))
+        fetchProductOrCategory: () => dispatch(fetchProductsFromCategoryAction(`https://kamaraapi.weybee.in/api/products?${keyS}=${valueS}`))
     }
 }
 

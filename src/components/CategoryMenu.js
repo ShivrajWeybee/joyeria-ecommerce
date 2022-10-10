@@ -22,7 +22,7 @@ export const CategoryMenu = ({ loading, categoryItem, fetchCatagory }) => {
 
     return (
         <div className='category-menu'>
-            <nav className='flex'>
+            <nav className='flex page-width'>
                 <ul className='flex'>
                     {
                         cat.length === 0 ? 'loading' :

@@ -1,0 +1,10 @@
+.all-products_container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    justify-content: center;
+    align-items: center;
+}
+
+.all-products_container a {
+    place-self: center;
+}
