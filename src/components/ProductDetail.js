@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom'
-import { fetchApis, fetchProductData } from '../redux/action';
+import { addToCart, addToCartData, fetchApis, fetchProductData } from '../redux/action';
 
-function ProductDetail({ productData, fetchProduct }) {
+function ProductDetail({ productData, fetchProduct, addToCartProduct }) {
 
     const handleAddToCart = () => {
         console.log(productData.cart)
         console.log("add to cart");
-        productData.cart.length === 0 ? productData.cart.push({ Item: productData.productData.data, Quantity: 1 }) :
-            (productData.cart.find(item => item.Item.id === productData.productData.data.id)) ? console.log("hh") : productData.cart.push({ Item: productData.productData.data, Quantity: 1 })
+        productData.cart.length === 0 ? addToCartProduct({ Item: productData.productData.data, quantity: 1 }) :
+            (productData.cart.find(item => item.Item.id === productData.productData.data.id)) ? console.log("hh") : addToCartProduct({ Item: productData.productData.data, quantity: 1 })
         console.log("Item Added to the Cart")
         console.log(productData.cart);
     }
@@ -68,7 +68,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchProduct: (productId) => dispatch(fetchProductData(`https://kamaraapi.weybee.in/api/products/${productId}`))
+        fetchProduct: (productId) => dispatch(fetchProductData(`https://kamaraapi.weybee.in/api/products/${productId}`)),
+        addToCartProduct: (a) => dispatch(addToCartData(a))
     }
 }
 

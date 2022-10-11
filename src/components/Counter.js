@@ -1,29 +1,26 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { decrementItem, decrementQuantity, incrementItem, incrementQuantity } from '../redux/action'
 
-const Counter = ({ cartItemCount, count, id }) => {
+const Counter = ({ cartItemCount, count, id, incrementCartItem, decrementCartItem }) => {
 
     const [qCount, setQCount] = useState(count)
 
     const increment = () => {
-        console.log("Increment")
-        console.log(`count : ${count}`)
-        console.log(`id : ${id}`)
         setQCount(prevCount => prevCount + 1)
-        cartItemCount.forEach((item, index) => item.Item.id === id ? item.Quantity = qCount : item.Quantity)
+        incrementCartItem(id, qCount)
     }
 
     const decrement = () => {
-        console.log("Decrement")
         setQCount(prevCount => prevCount > 0 ? prevCount - 1 : prevCount)
-        cartItemCount.forEach((item, index) => item.Item.id === id ? item.Quantity = qCount : item.Quantity)
+        decrementCartItem(id, qCount)
     }
 
     return (
-        <div>
-            <button onClick={decrement}>-</button>
-            <p>{qCount}</p>
-            <button onClick={increment}>+</button>
+        <div className="counter flex">
+            <p onClick={decrement} className="btn"><i class="fa-solid fa-minus"></i></p>
+            <p className="quantity-number">{qCount}</p>
+            <p onClick={increment} className="btn"><i class="fa-solid fa-plus"></i></p>
         </div>
     )
 }
@@ -38,7 +35,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchCart: () => dispatch()
+        incrementCartItem: (id, qCount) => dispatch(incrementQuantity(id, qCount)),
+        decrementCartItem: (id, qCount) => dispatch(decrementQuantity(id, qCount))
     }
 }
 

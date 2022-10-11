@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Cart from './Cart'
 
 export const Header = () => {
     return (
@@ -9,7 +10,7 @@ export const Header = () => {
                 <div><p className='logo'>Joyería</p></div>
                 <div className='flex navbar_wishlist-and-cart'>
                     <Link><i className="fa-regular fa-heart"></i></Link>
-                    <Link to="cart"><i className="fa-solid fa-cart-shopping"></i></Link>
+                    <i className="fa-solid fa-cart-shopping" onClick={<Cart />}></i>
                 </div>
             </div>
         </div>

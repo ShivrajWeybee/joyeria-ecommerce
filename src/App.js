@@ -8,6 +8,7 @@ import './styles/productDetail.css'
 import './styles/products.css'
 import './styles/productCard.css'
 import './styles/cart.css'
+import './styles/counter.css'
 
 import { Header } from './components/Header';
 import CategoryMenu from './components/CategoryMenu';
@@ -26,6 +27,7 @@ function App() {
     <div className="App">
       <Header />
       <Provider store={store}>
+        {/* <Cart /> */}
         <CategoryMenu />
         <Routes>
           <Route path='/' element={<Home />} />
@@ -33,7 +35,7 @@ function App() {
           <Route path='products/:productId' element={<ProductDetail />} />
           {/* <Route path='category' element={<Products />} />
           <Route path='category/:category_id' element={<CategoryDetail />} /> */}
-          <Route path='cart' element={<Cart />} />
+          {/* <Route path='cart' element={<Cart />} /> */}
         </Routes>
       </Provider>
     </div>

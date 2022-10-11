@@ -1,0 +1,21 @@
+.counter {
+    cursor: pointer;
+    justify-content: flex-start;
+}
+.counter p {
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.14s ease-in-out;
+}
+
+.btn p {
+    font-size: 12px;
+}
+.btn:hover {
+    background-color: black;
+    color: white;
+}

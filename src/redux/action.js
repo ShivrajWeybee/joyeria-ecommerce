@@ -1,4 +1,4 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_PRODUCT, FETCH_CATEGORY, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_PRODUCT, FETCH_CATEGORY, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART } from "./actionTypes";
 import axios from "axios";
 
 export const fetchApiRequest = () => {
@@ -49,12 +49,39 @@ export const fetchProductsFromCategory = (data) => {
 export const fetchHomepageBannerData = (data) => {
     return {
         type: FETCH_HOMEPAGE_BANNER,
-        payload: data
+        payload: data,
     }
 }
 
+export const addToCartData = (data) => {
+    return {
+        type: ADD_TO_CART,
+        payload: data,
+    }
+}
 
+export const removeFromCart = (id) => {
+    return {
+        type: REMOVE_FROM_CART,
+        payload: id,
+    }
+}
 
+export const incrementQuantity = (id, qCount) => {
+    return {
+        type: INCREMENT_QUANTITY,
+        payload: id,
+        count: qCount,
+    }
+}
+
+export const decrementQuantity = (id, qCount) => {
+    return {
+        type: DECREMENT_QUANTITY,
+        payload: id,
+        count: qCount
+    }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,4 +1,4 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART } from "./actionTypes";
 
 const initialState = {
     loading: true,
@@ -64,6 +64,40 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 banners: action.payload,
+            }
+
+        case ADD_TO_CART:
+            return {
+                ...state,
+                cart: [...state.cart, action.payload]
+            }
+
+        case REMOVE_FROM_CART:
+            return {
+                ...state,
+                cart: state.cart.filter((item, index) => (item.Item.id !== action.payload)),
+            }
+
+        case INCREMENT_QUANTITY:
+            return {
+                ...state,
+                cart: state.cart.map((item, index) => {
+                    if (item.Item.id === action.payload) {
+                        return { ...item, quantity: item.quantity + 1 }
+                    }
+                    return item
+                }),
+            }
+
+        case DECREMENT_QUANTITY:
+            return {
+                ...state,
+                cart: state.cart.map((item, index) => {
+                    if (item.Item.id === action.payload) {
+                        return { ...item, quantity: item.quantity - 1 }
+                    }
+                    return item
+                }),
             }
 
         default:
