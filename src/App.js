@@ -9,6 +9,9 @@ import './styles/products.css'
 import './styles/productCard.css'
 import './styles/cart.css'
 import './styles/counter.css'
+import './styles/home.css'
+import './styles/collectionImage.css'
+import './styles/footer.css'
 
 import { Header } from './components/Header';
 import CategoryMenu from './components/CategoryMenu';
@@ -21,6 +24,7 @@ import Cart from './components/Cart';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -37,6 +41,7 @@ function App() {
           <Route path='category/:category_id' element={<CategoryDetail />} /> */}
           {/* <Route path='cart' element={<Cart />} /> */}
         </Routes>
+        <Footer />
       </Provider>
     </div>
   );

@@ -1,7 +1,8 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER } from "./actionTypes";
 
 const initialState = {
     loading: true,
+    loadingBanner: true,
     apiData: [],
     error: '',
     categoryData: [],
@@ -10,6 +11,7 @@ const initialState = {
     cart: [],
     favourite: [],
     banners: [],
+    collections: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -64,6 +66,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 banners: action.payload,
+                // banners: { ...state.banners, type: action.typeOfBanner, bannerData: action.payload }
+            }
+
+        case COLLECTION_BANNER:
+            return {
+                ...state,
+                loading: false,
+                collections: action.payload
             }
 
         case ADD_TO_CART:

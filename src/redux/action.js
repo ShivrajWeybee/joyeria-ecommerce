@@ -1,4 +1,4 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_PRODUCT, FETCH_CATEGORY, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_PRODUCT, FETCH_CATEGORY, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER } from "./actionTypes";
 import axios from "axios";
 
 export const fetchApiRequest = () => {
@@ -47,8 +47,16 @@ export const fetchProductsFromCategory = (data) => {
 }
 
 export const fetchHomepageBannerData = (data) => {
+    console.log("banners coming...")
     return {
         type: FETCH_HOMEPAGE_BANNER,
+        payload: data,
+    }
+}
+
+export const fetchCollectionBannerData = (data) => {
+    return {
+        type: COLLECTION_BANNER,
         payload: data,
     }
 }
@@ -133,7 +141,28 @@ export const fetchHomepageBanner = (url) => {
         dispatch(fetchApiRequest())
         axios
             .get(url)
-            .then(res => dispatch(fetchHomepageBanner(res.data)))
+            .then(res => dispatch(fetchHomepageBannerData(res.data)))
+            .catch(err => dispatch(fetchApiFailure(err.message)))
+    }
+}
+// export const fetchHomepageBanner = (url) => {
+//     return (dispatch) => {
+//         dispatch(fetchApiRequest())
+//         axios
+//             .get(url)
+//             .then(res => res.data.data.map(type =>
+//                 axios.get(`https://kamaraapi.weybee.in/api/homepage?type=${type}`)
+//                     .then(resC => dispatch(fetchHomepageBannerData(resC.data, type)))
+//             ))
+//             .catch(err => dispatch(fetchApiFailure(err.message)))
+//     }
+// }
+export const fetchCollectionBanner = (url) => {
+    return (dispatch) => {
+        dispatch(fetchApiRequest())
+        axios
+            .get(url)
+            .then(res => dispatch(fetchCollectionBannerData(res.data)))
             .catch(err => dispatch(fetchApiFailure(err.message)))
     }
 }

@@ -1,5 +1,5 @@
 .homepage_product-slider {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     /* background-color: rgba(148, 170, 231, 0.356); */
 }
@@ -10,4 +10,8 @@
 
 .slick-slide {
     margin: 0 1rem;
+}
+.slick-slide a {
+    margin: 0 1rem;
+    text-decoration: none;
 }

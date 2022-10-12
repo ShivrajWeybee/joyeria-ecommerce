@@ -1,0 +1,23 @@
+.collection-container {
+    width: 65%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 0.7rem;
+}
+.collection-container .img-wrapper {
+    justify-self: center;
+}
+
+.type-1-image {
+    margin-top: 2.5rem;
+    object-fit: contain;
+}
+.type-1-image img {
+width: 100%;
+}
+
+.type-2-image {
+    margin: 5rem auto;
+    justify-content: space-between;
+}

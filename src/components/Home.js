@@ -1,99 +1,57 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { fetchApis, fetchHomepageBanner } from '../redux/action'
+import { fetchApis } from '../redux/action'
 
-import Slider from "react-slick";
-import { Link } from 'react-router-dom';
-
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import BannerSlider from './BannerSlider';
+import FeturedProductSlider from './FeturedProductSlider';
+import CollectionImage from './CollectionImage';
 
 function Home(props) {
 
     useEffect(() => {
         console.log("Home page call API")
-        props.fetchApi();
-        // props.fetchBanner();
+        props.fetchApi()
     }, [])
 
-    var settings = {
-        className: "slider variable-width",
-        dots: true,
-        infinite: true,
-        speed: 500,
-        arrows: true,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        variableWidth: true,
-    };
-
-    // const responsive = {
-    //     superLargeDesktop: {
-    //         // the naming can be any, depends on you.
-    //         breakpoint: { max: 4000, min: 3000 },
-    //         items: 5
-    //     },
-    //     desktop: {
-    //         breakpoint: { max: 3000, min: 1024 },
-    //         items: 3
-    //     },
-    //     tablet: {
-    //         breakpoint: { max: 1024, min: 464 },
-    //         items: 2
-    //     },
-    //     mobile: {
-    //         breakpoint: { max: 464, min: 0 },
-    //         items: 1
-    //     }
-    // };
-
     return (
-        <div className='homepage page-width'>
-            <div className='homepage_main-slider'>
-                <div>
-                    {/* <Carousel
-                        arrows={false}
-                        swipeable={false}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        infinite={true}
-                        autoPlay={true}
-                        autoPlaySpeed={1000}
-                        keyBoardControl={false}
-                        customTransition="all .5"
-                        transitionDuration={500}
-                        containerClass="carousel-container"
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px"
-                    >
-                        {
-                            props.data.loading ? 'loading...' :
-                                props.data.banners.map((i, index) =>
-                                    <div key={index}>
-                                        <img src={i} alt="product banner" />
-                                        <p>Hello</p>
-                                    </div>)
-                        }
-                    </Carousel> */}
+        <div className='homepage'>
+            <BannerSlider />
+            <div>
+                <p className="section-heading">Fetured Product</p>
+                <FeturedProductSlider />
+            </div>
+            {/* <div className="page-width">
+                <p className="section-heading">Fetured Category</p>
+                <div className="fetured-cat-parent flex">
+                    <div className="fetured-category">
+                        <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt='category' />
+                        <p>Women's</p>
+                    </div>
+                    <div className="fetured-category">
+                        <img src="https://images.unsplash.com/photo-1628785517892-dbcd2f2719ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt='category' />
+                        <p>Men's</p>
+                    </div>
+                    <div className="fetured-category">
+                        <img src="https://images.unsplash.com/photo-1562249004-1f7289c19c49?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt='category' />
+                        <p>Engagement</p>
+                    </div>
+                    <div className="fetured-category">
+                        <img src="https://images.unsplash.com/photo-1603298333647-ed142dbbc9d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt='category' />
+                        <p>Gifts</p>
+                    </div>
                 </div>
-                <div className='homepage_product-slider'>
-                    <Slider {...settings} >
-                        {
-                            props.data.loading ? <p>loading...</p> :
-                                props.data.apiData.data.map(product =>
-                                    <Link
-                                        key={product.sku}
-                                        to={`products/${product.id}`}
-                                    >
-                                        <div>
-                                            <img src={product.base_image.medium_image_url} alt={product.url_key} />
-                                            <p>{product.name}</p>
-                                        </div>
-                                    </Link>
-                                )
-                        }
-                    </Slider>
+            </div> */}
+            <div>
+                <p className="section-heading">Fetured Colletion</p>
+                <CollectionImage />
+            </div>
+            <div>
+                <div className="type-1-image page-width">
+                    <img src='https://kamaraapi.weybee.in/storage/slider_images/Default/YG7C6Yalu1tocRUT7pMouMAHQpmeDYhanqjMXJYB.jpg' alt='banner' />
+                </div>
+                <div className="type-2-image page-width flex">
+                    <img src='https://kamaraapi.weybee.in/storage/slider_images/Default/UNpgtlB2Mp3U2jodFDfnFHELfq04DfzpbRz8T3sB.jpg' alt='banner' />
+                    <img src='https://kamaraapi.weybee.in/storage/slider_images/Default/Q2H1L69izVUpIFzFgNasrutsdpBaJTmCO5jDK0T3.jpg' alt='banner' />
                 </div>
             </div>
         </div>
@@ -108,8 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchApi: () => dispatch(fetchApis('https://kamaraapi.weybee.in/api/products?page=1')),
-        fetchBanner: () => dispatch(fetchHomepageBanner('https://kamaraapi.weybee.in/api/homepage?type=slider'))
+        fetchApi: () => dispatch(fetchApis('https://kamaraapi.weybee.in/api/products?page=1'))
     }
 }
 

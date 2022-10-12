@@ -1,6 +1,6 @@
 .category-menu {
     /* background-color: #fffef8; */
-    margin-bottom: 3rem;
+    padding-bottom: 1rem;
     border-bottom: 0.01rem solid rgba(180, 180, 180, 0.247);
 }
 .category-menu ul {
