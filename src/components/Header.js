@@ -1,18 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { closeCart, openCart } from '../redux/action';
 import Cart from './Cart'
 
-export const Header = () => {
+function Header({ isOpen, openTheCart, closeTheCart }) {
+
+    const handleOpenCart = () => {
+        openTheCart()
+    }
+
     return (
         <div className='header page-width'>
             <div className='header-inner flex'>
-                <div className='header-item'><i className="fa-solid fa-magnifying-glass"></i></div>
-                <div><p className='logo'>Joyería</p></div>
+                <div className='header-item'>
+                    <a><i className="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+                <Link to="/"><p className='logo'>Joyería</p></Link>
                 <div className='flex navbar_wishlist-and-cart'>
-                    <Link><i className="fa-regular fa-heart"></i></Link>
-                    <i className="fa-solid fa-cart-shopping"></i>
+                    <Link to="favourite"><i className="fa-regular fa-heart"></i></Link>
+                    <a onClick={handleOpenCart}><i className="fa-solid fa-cart-shopping"></i></a>
                 </div>
             </div>
+            {isOpen && <Cart />}
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isOpen: state.isCartOpen,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        openTheCart: () => dispatch(openCart()),
+        closeTheCart: () => dispatch(closeCart())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

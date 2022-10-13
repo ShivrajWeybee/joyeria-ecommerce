@@ -2,7 +2,15 @@
     justify-content: start;
     align-items: flex-start;
     gap: 5rem;
-    font-family: 'Work Sans', sans-serif;
+    font-family: var(--primary-font);
+}
+
+.product-img_container {
+    width: 40%;
+}
+
+.product-info_container {
+    width: 60%;
 }
 
 .product-info_container hr {
@@ -13,6 +21,7 @@
 
 .product-price {
     margin: 1rem 0;
+    font-size: 18px;
 }
 
 .product-desc {
@@ -20,16 +29,16 @@
 }
 
 .product-btn {
-    font-family: 'Work Sans', sans-serif;
+    font-family: var(--primary-font);
     font-size: 0.9rem;
     background-color: transparent;
     outline: none;
     border: 1px solid black;
     min-width: 50%;
-    padding: 0.5rem 0;
+    padding: 0.7rem 0;
     margin: 1rem 0;
     display: block;
-    transition: 0.14s ease-in-out;
+    transition: 0.1s ease-in-out;
 }
 
 .product-btn:hover {
@@ -46,6 +55,7 @@
 
 .inStock {
     line-height: 15px;
+    margin: 2rem 0;
 }
 .inStock::before {
     margin-right: 10px;
@@ -60,6 +70,7 @@
 }
 .outOfStock {
     line-height: 15px;
+    margin: 2rem 0;
 }
 .outOfStock::before {
     margin-right: 10px;

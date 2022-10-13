@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { decrementItem, decrementQuantity, incrementItem, incrementQuantity } from '../redux/action'
+import { decrementQuantity, incrementQuantity } from '../redux/action'
 
 const Counter = ({ cartItemCount, count, id, incrementCartItem, decrementCartItem }) => {
 
@@ -18,9 +18,9 @@ const Counter = ({ cartItemCount, count, id, incrementCartItem, decrementCartIte
 
     return (
         <div className="counter flex">
-            <p onClick={decrement} className="btn"><i class="fa-solid fa-minus"></i></p>
+            <p onClick={decrement} className="btn"><i className="fa-solid fa-minus"></i></p>
             <p className="quantity-number">{qCount}</p>
-            <p onClick={increment} className="btn"><i class="fa-solid fa-plus"></i></p>
+            <p onClick={increment} className="btn"><i className="fa-solid fa-plus"></i></p>
         </div>
     )
 }

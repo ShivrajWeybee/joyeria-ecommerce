@@ -1,10 +1,17 @@
 
 .product-card_container {
-    padding: 10px;
-    border: 1px solid black;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .product-card_container a {
     text-decoration: none;
+}
+.product-card_container .heart-delete {
+    text-align: right;
+    margin-bottom: 5px;
+}
+.product-card_container .heart-delete i {
+    color: var(--primary-color);
 }
 
 .product-card_img-container {
@@ -17,6 +24,10 @@
     height: 100%;
 }
 .product-card_info p {
-    color: black;
+    color: var(--primary-color);
     text-align: center;
+}
+.pName {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }

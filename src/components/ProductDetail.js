@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom'
-import { addToCart, addToCartData, fetchApis, fetchProductData } from '../redux/action';
+import { addToCart, addToCartData, addToFavouriteData, fetchApis, fetchProductData } from '../redux/action';
+import { Loader } from './Loader';
 
-function ProductDetail({ productData, fetchProduct, addToCartProduct }) {
+function ProductDetail({ productData, fetchProduct, addToCartProduct, addToFavouriteProduct }) {
 
     const handleAddToCart = () => {
         console.log(productData.cart)
@@ -14,26 +15,29 @@ function ProductDetail({ productData, fetchProduct, addToCartProduct }) {
         console.log(productData.cart);
     }
 
+    const handleAddToFavourite = () => {
+        console.log(productData.favourite)
+        console.log("add to favourite");
+        productData.favourite.length === 0 ? addToFavouriteProduct(productData.productData.data) :
+            (productData.favourite.find(item => item.id === productData.productData.data.id)) ? console.log('ff') : addToFavouriteProduct(productData.productData.data)
+        console.log("Item added to the favourite")
+        console.log(productData.favourite)
+    }
+
     const param = useParams();
     const [productId, setproductId] = useState(param.productId);
-
-    useEffect(() => {
-        console.log(productId)
-    }, [])
 
     useEffect(() => {
         console.log(productId);
         fetchProduct(productId)
     }, [])
 
-    // console.log(productId)
-    // console.log(!props.productData.loading ? props.productData.apiData : 'loading...')
     return (
         <div>
             {
-                productData.loading ? <p>Loading...</p> :
+                productData.loading ? <Loader /> :
                     productData.productData?.data ?
-                        <div className='productDetail-container flex page-width'>
+                        <div className='productDetail-container flex page-width section-container'>
                             <div className='product-img_container'>
                                 <img
                                     src={productData.productData.data.base_image.large_image_url}
@@ -48,10 +52,13 @@ function ProductDetail({ productData, fetchProduct, addToCartProduct }) {
                                 <p className={productData.productData.data.in_stock ? 'inStock' : 'outOfStock'}>{productData.productData.data.in_stock ? 'currently in stock' : 'out of stock'}</p>
                                 <button
                                     className='product-btn'
-                                    disabled={!productData.productData.data.in_stock}
+                                    disabled={!productData.productData.data.in_stock || productData.cart.includes(ele => ele.Item.id === productId)}
                                     onClick={handleAddToCart}
                                 >Add to Cart</button>
-                                <button className='product-btn'>Add to favourite</button>
+                                <button
+                                    className='product-btn'
+                                    onClick={handleAddToFavourite}
+                                >Add to favourite</button>
                             </div>
                         </div> : ''
             }
@@ -69,7 +76,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchProduct: (productId) => dispatch(fetchProductData(`https://kamaraapi.weybee.in/api/products/${productId}`)),
-        addToCartProduct: (a) => dispatch(addToCartData(a))
+        addToCartProduct: (a) => dispatch(addToCartData(a)),
+        addToFavouriteProduct: (a) => dispatch(addToFavouriteData(a)),
     }
 }
 

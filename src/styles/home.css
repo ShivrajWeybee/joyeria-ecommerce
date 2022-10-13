@@ -3,7 +3,7 @@
 }
 
 .section-heading {
-    font-family: 'Work Sans', sans-serif;
+    font-family: var(--primary-font);
     font-size: 2rem;
     text-transform: uppercase;
     margin: 5rem 0;
@@ -27,7 +27,7 @@
 }
 .fetured-category p {
     background-color: rgba(0, 0, 0, 0.199);
-    font-family: 'Work Sans', sans-serif;
+    font-family: var(--primary-font);
     color: whitesmoke;
     text-align: center;
     line-height: 300px;

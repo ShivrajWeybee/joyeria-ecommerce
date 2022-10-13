@@ -23,7 +23,7 @@ function BannerSlider({ loading, bigBanner, fetchBanner }) {
             >
                 {
                     loading ? <p>Loading...</p> :
-                        bigBanner.data.map((item, index) => <div key={index} data-src={item.image_url} />)
+                        bigBanner?.data?.map((item, index) => <div key={index} data-src={item.image_url} />)
                 }
             </AutoplaySlider>
         </div>

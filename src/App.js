@@ -12,8 +12,9 @@ import './styles/counter.css'
 import './styles/home.css'
 import './styles/collectionImage.css'
 import './styles/footer.css'
+import './styles/loader.css'
 
-import { Header } from './components/Header';
+import Header from './components/Header';
 import CategoryMenu from './components/CategoryMenu';
 import store from './redux/store.js';
 import { Provider } from 'react-redux';
@@ -21,17 +22,18 @@ import Home from './components/Home';
 import ProductDetail from './components/ProductDetail';
 import Products from './components/Products';
 import Cart from './components/Cart';
+import { Footer } from './components/Footer';
+import Favourite from './components/Favourite';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Footer } from './components/Footer';
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <Provider store={store}>
-        {/* <Cart /> */}
+        <Header />
+        <Cart />
         <CategoryMenu />
         <Routes>
           <Route path='/' element={<Home />} />
@@ -40,6 +42,7 @@ function App() {
           {/* <Route path='category' element={<Products />} />
           <Route path='category/:category_id' element={<CategoryDetail />} /> */}
           {/* <Route path='cart' element={<Cart />} /> */}
+          <Route path='favourite' element={<Favourite />} />
         </Routes>
         <Footer />
       </Provider>

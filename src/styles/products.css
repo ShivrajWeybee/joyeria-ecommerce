@@ -3,8 +3,20 @@
     grid-template-columns: repeat(3, minmax(300px, 1fr));
     justify-content: center;
     align-items: center;
+    gap: 2rem 0;
 }
 
 .all-products_container a {
+    width: 300px;
     place-self: center;
+    text-decoration: none;
+    font-family: var(--primary-font);
+}
+
+.all-products_container a img {
+    transition: 0.24s ease-in-out;
+}
+
+.all-products_container a:hover img {
+    transform: scale(1.03);
 }

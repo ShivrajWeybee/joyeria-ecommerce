@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { fetchApis } from '../redux/action';
 import { ProductCard } from './ProductCard';
+import { Loader } from './Loader';
 
 function FeturedProductSlider(props) {
 
@@ -29,7 +30,7 @@ function FeturedProductSlider(props) {
                 <div className='homepage_product-slider'>
                     <Slider {...settings} >
                         {
-                            props.data.loading ? <p>loading...</p> :
+                            props.data.loading ? <Loader /> :
                                 props.data?.apiData?.data?.map(product =>
                                     <Link
                                         key={product.sku}

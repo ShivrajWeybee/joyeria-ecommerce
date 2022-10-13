@@ -1,4 +1,4 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_PRODUCT, FETCH_CATEGORY, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_PRODUCT, FETCH_CATEGORY, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER, ONE_IMAGE, TWO_IMAGE, ADD_TO_FAVOURITE, REMOVE_TO_FAVOURITE, OPEN_CART, CLOSE_CART } from "./actionTypes";
 import axios from "axios";
 
 export const fetchApiRequest = () => {
@@ -61,6 +61,24 @@ export const fetchCollectionBannerData = (data) => {
     }
 }
 
+export const fetchOneImageData = (data) => {
+    console.log("one image..")
+    console.log(data)
+    return {
+        type: ONE_IMAGE,
+        payload: data,
+    }
+}
+
+export const fetchTwoImageData = (data) => {
+    console.log("two image...")
+    console.log(data)
+    return {
+        type: TWO_IMAGE,
+        payload: data,
+    }
+}
+
 export const addToCartData = (data) => {
     return {
         type: ADD_TO_CART,
@@ -72,6 +90,22 @@ export const removeFromCart = (id) => {
     return {
         type: REMOVE_FROM_CART,
         payload: id,
+    }
+}
+
+export const addToFavouriteData = (data) => {
+    console.log("adding to favourite case..")
+    console.log(data)
+    return {
+        type: ADD_TO_FAVOURITE,
+        payload: data,
+    }
+}
+
+export const removeFromFavouriteData = (id) => {
+    return {
+        type: REMOVE_TO_FAVOURITE,
+        payload: id
     }
 }
 
@@ -88,6 +122,18 @@ export const decrementQuantity = (id, qCount) => {
         type: DECREMENT_QUANTITY,
         payload: id,
         count: qCount
+    }
+}
+
+export const openCart = () => {
+    return {
+        type: OPEN_CART,
+    }
+}
+
+export const closeCart = () => {
+    return {
+        type: CLOSE_CART,
     }
 }
 
@@ -163,6 +209,26 @@ export const fetchCollectionBanner = (url) => {
         axios
             .get(url)
             .then(res => dispatch(fetchCollectionBannerData(res.data)))
+            .catch(err => dispatch(fetchApiFailure(err.message)))
+    }
+}
+
+export const fetchOneImage = (url) => {
+    return (dispatch) => {
+        dispatch(fetchApiRequest())
+        axios
+            .get(url)
+            .then(res => dispatch(fetchOneImageData(res.data)))
+            .catch(err => dispatch(fetchApiFailure(err.message)))
+    }
+}
+
+export const fetchTwoImage = (url) => {
+    return (dispatch) => {
+        dispatch(fetchApiRequest())
+        axios
+            .get(url)
+            .then(res => dispatch(fetchTwoImageData(res.data)))
             .catch(err => dispatch(fetchApiFailure(err.message)))
     }
 }

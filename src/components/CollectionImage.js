@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { Loader } from './Loader';
 import { fetchCollectionBanner } from '../redux/action'
 
 function CollectionImage({ loading, collection, fetchCollectionImg }) {
@@ -11,7 +12,7 @@ function CollectionImage({ loading, collection, fetchCollectionImg }) {
     return (
         <div className="collection-container">
             {
-                loading ? <p>Loading...</p> :
+                loading ? <Loader /> :
                     collection?.data?.map((item, index) =>
                         <div key={index} className="img-wrapper">
                             <img src={item.image_url} alt={`collection-${index}`} />

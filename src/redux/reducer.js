@@ -1,4 +1,4 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER, ONE_IMAGE, TWO_IMAGE, ADD_TO_FAVOURITE, REMOVE_TO_FAVOURITE, OPEN_CART, CLOSE_CART } from "./actionTypes";
 
 const initialState = {
     loading: true,
@@ -12,6 +12,10 @@ const initialState = {
     favourite: [],
     banners: [],
     collections: [],
+    oneImage: [],
+    twoImage: [],
+    isCartOpen: false,
+    total: 0,
 }
 
 const reducer = (state = initialState, action) => {
@@ -76,6 +80,20 @@ const reducer = (state = initialState, action) => {
                 collections: action.payload
             }
 
+        case ONE_IMAGE:
+            return {
+                ...state,
+                loading: false,
+                oneImage: action.payload
+            }
+
+        case TWO_IMAGE:
+            return {
+                ...state,
+                loading: false,
+                twoImage: action.payload
+            }
+
         case ADD_TO_CART:
             return {
                 ...state,
@@ -88,6 +106,19 @@ const reducer = (state = initialState, action) => {
                 cart: state.cart.filter((item, index) => (item.Item.id !== action.payload)),
             }
 
+        case ADD_TO_FAVOURITE:
+            console.log("reducer reached")
+            return {
+                ...state,
+                favourite: [...state.favourite, action.payload],
+            }
+
+        case REMOVE_TO_FAVOURITE:
+            return {
+                ...state,
+                favourite: state.favourite.filter((item, index) => (item.id !== action.payload))
+            }
+
         case INCREMENT_QUANTITY:
             return {
                 ...state,
@@ -97,6 +128,7 @@ const reducer = (state = initialState, action) => {
                     }
                     return item
                 }),
+                total: state.cart.reduce((a, b) => (a.Item.price * a.quantity) + (b.Item.price * b.quantity))
             }
 
         case DECREMENT_QUANTITY:
@@ -108,6 +140,19 @@ const reducer = (state = initialState, action) => {
                     }
                     return item
                 }),
+                total: state.cart.reduce((a, b) => (a.Item.price * a.quantity) + (b.Item.price * b.quantity))
+            }
+
+        case OPEN_CART:
+            return {
+                ...state,
+                isCartOpen: true,
+            }
+
+        case CLOSE_CART:
+            return {
+                ...state,
+                isCartOpen: false,
             }
 
         default:
