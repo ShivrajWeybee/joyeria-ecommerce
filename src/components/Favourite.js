@@ -13,21 +13,20 @@ function Favourite({ loading, favouriteData, removeFavourite }) {
                     favouriteData.length === 0 ?
                         <div>
                             <p>"There's no item in your Favourite list.."</p>
-                            <Link to='/products' className="go-to-shoping">Go to shoping</Link>
+                            <p><Link to='/products' className="go-to-shoping">Go to shoping</Link></p>
                         </div>
                         : favouriteData.map((item, index) =>
-                            <Link
-                                key={index}
-                                to={`${item.id}`}>
-                                <div className="product-card_container">
-                                    <div className="heart-delete" onClick={() => removeFavourite(item.id)}><i className="fa-solid fa-trash"></i></div>
+                            <Link className="product-card_container">
+                                <div className="heart-delete"><i className="fa-solid fa-trash" onClick={() => removeFavourite(item.id)}></i></div>
+                                <Link
+                                    key={index}
+                                    to={`/products/${item.id}`}>
                                     <ProductCard
-                                        isFavourite={true}
-                                        imgUrl={item.base_image.medium_image_url}
+                                        imgUrl={item.base_image?.medium_image_url}
                                         price={item.formated_price}
                                         pName={item.name}
                                     />
-                                </div>
+                                </Link>
                             </Link>
                         )
                 }

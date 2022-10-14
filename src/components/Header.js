@@ -14,10 +14,12 @@ function Header({ isOpen, openTheCart, closeTheCart }) {
         <div className='header page-width'>
             <div className='header-inner flex'>
                 <div className='header-item'>
-                    <a><i className="fa-solid fa-magnifying-glass"></i></a>
+                    <a className="desktop-icon"><i className="fa-solid fa-magnifying-glass"></i></a>
+                    <a className="mobile-icon"><i class="fa-solid fa-bars"></i></a>
                 </div>
                 <Link to="/"><p className='logo'>Joyería</p></Link>
                 <div className='flex navbar_wishlist-and-cart'>
+                    <a className="mobile-icon"><i className="fa-solid fa-magnifying-glass"></i></a>
                     <Link to="favourite"><i className="fa-regular fa-heart"></i></Link>
                     <a onClick={handleOpenCart}><i className="fa-solid fa-cart-shopping"></i></a>
                 </div>

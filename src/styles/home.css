@@ -10,6 +10,22 @@
     text-align: center;
 }
 
+@media screen and (max-width: 1500px) {
+  .awssld__wrapper {
+    height: 450px !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .awssld__wrapper {
+    height: 400px !important;
+  }
+}
+@media screen and (max-width: 990px) {
+  .awssld__wrapper {
+    height: 350px !important;
+  }
+}
+
 /* .fetured-cat-parent {
     width: 70%;
     margin: 0 auto;

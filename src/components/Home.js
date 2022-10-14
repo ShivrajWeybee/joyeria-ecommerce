@@ -18,11 +18,11 @@ function Home(props) {
     return (
         <div className='homepage'>
             <BannerSlider />
-            <div>
+            <div className="section-container">
                 <p className="section-heading">Fetured Product</p>
                 <FeturedProductSlider />
             </div>
-            <div className="page-width">
+            <div className="page-width section-container">
                 {/* <p className="section-heading">Fetured Category</p>
                 <div className="fetured-cat-parent flex">
                     <div className="fetured-category">
@@ -44,10 +44,10 @@ function Home(props) {
                 </div> */}
             </div>
             <div>
-                <p className="section-heading">Fetured Colletion</p>
+                <p className="section-heading section-container">Fetured Colletion</p>
                 <CollectionImage />
             </div>
-            <div>
+            <div className="section-container">
                 <div className="type-1-image page-width">
                     <OneImage />
                 </div>

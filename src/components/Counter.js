@@ -18,9 +18,9 @@ const Counter = ({ cartItemCount, count, id, incrementCartItem, decrementCartIte
 
     return (
         <div className="counter flex">
-            <p onClick={decrement} className="btn"><i className="fa-solid fa-minus"></i></p>
-            <p className="quantity-number">{qCount}</p>
-            <p onClick={increment} className="btn"><i className="fa-solid fa-plus"></i></p>
+            <button onClick={decrement} className="btn" disabled={qCount === 1}><i className="fa-solid fa-minus"></i></button>
+            <button className="quantity-number">{qCount}</button>
+            <button onClick={increment} className="btn"><i className="fa-solid fa-plus"></i></button>
         </div>
     )
 }

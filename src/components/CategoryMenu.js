@@ -21,35 +21,41 @@ export const CategoryMenu = ({ loading, categoryItem, fetchCatagory }) => {
     }, [])
 
     return (
-        <div className='category-menu'>
-            <nav className='flex page-width'>
-                <ul className='flex'>
-                    {
-                        cat.length === 0 ? 'loading' :
-                            cat.data.map((cat, index) => <li key={index} value={cat.id}>
-                                {cat.name}
-                                {
-                                    cat.children.length > 0 ?
-                                        <div key={index} className='dropdown-menu'>
-                                            <div className='dropdown-inner'>
-                                                {
-                                                    cat.children?.map((nest, index) =>
-                                                        <Link
-                                                            key={index}
-                                                            to={`/products?category_id=${nest.id}`}
-                                                        >
-                                                            <p>{nest.name}</p>
-                                                        </Link>
-                                                    )
-                                                }
-                                            </div>
-                                        </div> : ''
-                                }
-                            </li>)
-                    }
-                </ul>
-            </nav>
-        </div>
+        <>
+            <div className="mobile-nav-backdrop"></div>
+            <div className='category-menu'>
+                <div className="mobile-icon close-toggle">X</div>
+                <nav className='page-width'>
+                    <ul className='flex'>
+                        {
+                            cat.length === 0 ? 'loading' :
+                                cat.data.map((cat, index) =>
+                                    <li key={index} value={cat.id}>
+                                        {cat.name}
+                                        {
+                                            cat.children.length > 0 ?
+                                                <div key={index} className='dropdown-menu'>
+                                                    <div className='dropdown-inner'>
+                                                        {
+                                                            cat.children?.map((nest, index) =>
+                                                                <Link
+                                                                    key={index}
+                                                                    to={`/products?category_id=${nest.id}`}
+                                                                >
+                                                                    <p>{nest.name}</p>
+                                                                </Link>
+                                                            )
+                                                        }
+                                                    </div>
+                                                </div> : ''
+                                        }
+                                    </li>
+                                )
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </>
     )
 }
 

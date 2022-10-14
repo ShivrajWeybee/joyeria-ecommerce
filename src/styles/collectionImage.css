@@ -1,5 +1,4 @@
 .collection-container {
-    width: 65%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, minmax(300px, 1fr));
@@ -7,17 +6,34 @@
 }
 .collection-container .img-wrapper {
     justify-self: center;
+    width: 100%;
+}
+.collection-container .img-wrapper img {
+    object-fit: cover;
+    width: 100%;
 }
 
 .type-1-image {
-    margin-top: 2.5rem;
     object-fit: contain;
 }
 .type-1-image img {
-width: 100%;
+    width: 100%;
 }
 
 .type-2-image {
-    margin: 5rem auto;
+    margin: 2rem auto;
     justify-content: space-between;
+}
+.two-image-1 {
+    width: 48%;
+}
+.two-image-1 img {
+    width: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 1240px) {
+    .collection-container {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
 }

@@ -1,4 +1,4 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER, ONE_IMAGE, TWO_IMAGE, ADD_TO_FAVOURITE, REMOVE_TO_FAVOURITE, OPEN_CART, CLOSE_CART } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER, ONE_IMAGE, TWO_IMAGE, ADD_TO_FAVOURITE, REMOVE_TO_FAVOURITE, OPEN_CART, CLOSE_CART, SET_TOTAL } from "./actionTypes";
 
 const initialState = {
     loading: true,
@@ -106,6 +106,12 @@ const reducer = (state = initialState, action) => {
                 cart: state.cart.filter((item, index) => (item.Item.id !== action.payload)),
             }
 
+        case SET_TOTAL:
+            return {
+                ...state,
+                total: state.cart.reduce((acc, i) => acc + (i.Item?.price * i.quantity), 0)
+            }
+
         case ADD_TO_FAVOURITE:
             console.log("reducer reached")
             return {
@@ -128,7 +134,7 @@ const reducer = (state = initialState, action) => {
                     }
                     return item
                 }),
-                total: state.cart.reduce((a, b) => (a.Item.price * a.quantity) + (b.Item.price * b.quantity))
+                total: state.cart.reduce((acc, i) => acc + (i.Item.price * i.quantity), 0)
             }
 
         case DECREMENT_QUANTITY:
@@ -140,7 +146,7 @@ const reducer = (state = initialState, action) => {
                     }
                     return item
                 }),
-                total: state.cart.reduce((a, b) => (a.Item.price * a.quantity) + (b.Item.price * b.quantity))
+                total: state.cart.reduce((acc, i) => acc + (i.Item.price * i.quantity), 0)
             }
 
         case OPEN_CART:

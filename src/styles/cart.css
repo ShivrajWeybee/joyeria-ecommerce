@@ -1,8 +1,8 @@
 
 .cart-wrapper {
     background-color: #97979794;
-    position: absolute;
-    height: 100%;
+    position: fixed;
+    height: 100vh;
     overflow-y: hidden;
     width: 100%;
     top: 0;

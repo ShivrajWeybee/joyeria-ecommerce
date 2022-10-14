@@ -36,3 +36,14 @@
 .section-container {
   margin: 5rem auto;
 }
+
+@media screen and (max-width: 992px) {
+  .page-width {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 540px) {
+  .page-width {
+    width: 95%;
+  }
+}

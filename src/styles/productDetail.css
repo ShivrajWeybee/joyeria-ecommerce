@@ -8,6 +8,10 @@
 .product-img_container {
     width: 40%;
 }
+.product-img_container img {
+    width: 100%;
+    object-fit: contain;
+}
 
 .product-info_container {
     width: 60%;

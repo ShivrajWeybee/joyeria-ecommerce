@@ -14,7 +14,9 @@ export const TwoImage = ({ loading, twoImageData, fetchTwoBanner }) => {
             {
                 loading ? <Loader /> :
                     twoImageData?.data?.map((banner, index) =>
-                        <img key={index} src={banner.image_url} alt="banner" />
+                        <div className="two-image-1">
+                            <img key={index} src={banner.image_url} alt="banner" />
+                        </div>
                     )
             }
             {/* <img src='' alt='banner' /> */}

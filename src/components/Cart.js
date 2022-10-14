@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
-import { closeCart, removeFromCart } from '../redux/action';
+import { closeCart, removeFromCart, setGrandTotal } from '../redux/action';
 import Counter from './Counter'
 
-const Cart = ({ cartData, remove, isOpenC, closeTheCart }) => {
+const Cart = ({ cartData, remove, isOpenC, total, closeTheCart, settingTheTotal }) => {
 
-    const [total, setTotal] = useState(cartData.cart.length === 0 ? 0 : Number(cartData.cart.reduce((a, b) => (Number(a.Item?.price) * Number(a.quantity)) + (Number(b.Item?.price) * Number(b.quantity)))), 0)
+    // const [totalC, setTotalC] = useState(cartData.cart.length === 0 ? 0 : (cartData.cart.reduce((acc, i) => acc + i.Item?.price * i.quantity, 0)))
 
     useEffect(() => {
-        setTotal(cartData.cart.length === 0 ? 0 : Number(cartData.cart.reduce((a, b) => (Number(a.Item?.price) * Number(a.quantity)) + (Number(b.Item?.price) * Number(b.quantity)), 0)))
+        // setTotalC(cartData.cart.length === 0 ? 0 : (cartData.cart.reduce((acc, i) => acc + i.Item?.price * i.quantity, 0)))
+        settingTheTotal()
     }, [cartData.cart])
 
     const removeFromCart = (id) => {
@@ -55,10 +55,7 @@ const Cart = ({ cartData, remove, isOpenC, closeTheCart }) => {
                 <div className="grand-total flex">
                     <p>Grand Total</p>
                     <p>
-                        {console.log(total)}
-                        {/* {
-                    console.log(cartData.cart.reduce((a, b) => (a.Item.price * a.quantity) + (b.Item.price * b.quantity), 0))
-                } */}
+                        <i className="fa-solid fa-indian-rupee-sign"></i> {Math.round(total * 100 / 100).toFixed(2)}
                     </p>
                 </div>
             </div>
@@ -77,7 +74,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         remove: (id) => dispatch(removeFromCart(id)),
-        closeTheCart: () => dispatch(closeCart())
+        closeTheCart: () => dispatch(closeCart()),
+        settingTheTotal: () => dispatch(setGrandTotal()),
     }
 }
 

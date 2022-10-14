@@ -10,14 +10,13 @@ function CollectionImage({ loading, collection, fetchCollectionImg }) {
     }, [])
 
     return (
-        <div className="collection-container">
+        <div className="collection-container page-width">
             {
-                loading ? <Loader /> :
-                    collection?.data?.map((item, index) =>
-                        <div key={index} className="img-wrapper">
-                            <img src={item.image_url} alt={`collection-${index}`} />
-                        </div>
-                    )
+                collection?.data?.map((item, index) =>
+                    <div key={index} className="img-wrapper">
+                        <img src={item.image_url} alt={`collection-${index}`} />
+                    </div>
+                )
             }
         </div>
     )

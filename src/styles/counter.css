@@ -2,7 +2,7 @@
     cursor: pointer;
     justify-content: flex-start;
 }
-.counter p {
+.counter button {
     padding: 0.2rem 0.5rem;
     text-align: center;
     font-size: 18px;
@@ -12,10 +12,13 @@
     transition: 0.14s ease-in-out;
 }
 
-.btn p {
+button.btn {
     font-size: 12px;
 }
-.btn:hover {
+button.btn:hover {
     background-color: black;
     color: white;
+}
+button.btn:disabled {
+    pointer-events: none;
 }

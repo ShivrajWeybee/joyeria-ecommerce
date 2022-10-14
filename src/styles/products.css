@@ -1,6 +1,6 @@
 .all-products_container {
     display: grid;
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
     justify-content: center;
     align-items: center;
     gap: 2rem 0;
@@ -19,4 +19,18 @@
 
 .all-products_container a:hover img {
     transform: scale(1.03);
+}
+
+.bounce-wrapper {
+    grid-column: 1/3;
+}
+@media screen and (max-width: 1200px) {
+    .all-products_container a {
+        width: 200px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .all-products_container {
+        grid-template-columns: repeat(2, minmax(30px, 1fr));
+    }
 }

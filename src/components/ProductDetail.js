@@ -1,34 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom'
-import { addToCart, addToCartData, addToFavouriteData, fetchApis, fetchProductData } from '../redux/action';
+import { addToCartData, addToFavouriteData, fetchProductData } from '../redux/action';
 import { Loader } from './Loader';
 
 function ProductDetail({ productData, fetchProduct, addToCartProduct, addToFavouriteProduct }) {
 
     const handleAddToCart = () => {
-        console.log(productData.cart)
-        console.log("add to cart");
         productData.cart.length === 0 ? addToCartProduct({ Item: productData.productData.data, quantity: 1 }) :
             (productData.cart.find(item => item.Item.id === productData.productData.data.id)) ? console.log("hh") : addToCartProduct({ Item: productData.productData.data, quantity: 1 })
-        console.log("Item Added to the Cart")
-        console.log(productData.cart);
     }
 
     const handleAddToFavourite = () => {
-        console.log(productData.favourite)
-        console.log("add to favourite");
         productData.favourite.length === 0 ? addToFavouriteProduct(productData.productData.data) :
             (productData.favourite.find(item => item.id === productData.productData.data.id)) ? console.log('ff') : addToFavouriteProduct(productData.productData.data)
-        console.log("Item added to the favourite")
-        console.log(productData.favourite)
     }
 
     const param = useParams();
     const [productId, setproductId] = useState(param.productId);
 
     useEffect(() => {
-        console.log(productId);
         fetchProduct(productId)
     }, [])
 
@@ -48,16 +39,17 @@ function ProductDetail({ productData, fetchProduct, addToCartProduct, addToFavou
                                 <h1 className='product-title'>{productData.productData.data.name}</h1>
                                 <p className='product-price'>{productData.productData.data.formated_price}</p>
                                 <hr />
-                                <p className='product-desc'>{productData.productData.data.description}</p>
+                                <p className='product-desc' dangerouslySetInnerHTML={{ __html: productData.productData.data.description }}></p>
                                 <p className={productData.productData.data.in_stock ? 'inStock' : 'outOfStock'}>{productData.productData.data.in_stock ? 'currently in stock' : 'out of stock'}</p>
                                 <button
                                     className='product-btn'
-                                    disabled={!productData.productData.data.in_stock || productData.cart.includes(ele => ele.Item.id === productId)}
+                                    disabled={!productData.productData.data.in_stock || productData.cart.find(ele => ele.Item.id === productData.productData.data.id)}
                                     onClick={handleAddToCart}
                                 >Add to Cart</button>
                                 <button
                                     className='product-btn'
                                     onClick={handleAddToFavourite}
+                                    disabled={productData.favourite.find(i => i.id === productData.productData.data.id)}
                                 >Add to favourite</button>
                             </div>
                         </div> : ''

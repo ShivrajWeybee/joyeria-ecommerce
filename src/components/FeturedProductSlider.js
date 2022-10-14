@@ -28,19 +28,31 @@ function FeturedProductSlider(props) {
         <div>
             <div className='homepage_main-slider page-width'>
                 <div className='homepage_product-slider'>
-                    <Slider {...settings} >
-                        {
-                            props.data.loading ? <Loader /> :
-                                props.data?.apiData?.data?.map(product =>
-                                    <Link
-                                        key={product.sku}
-                                        to={`products/${product.id}`}
-                                    >
-                                        <ProductCard imgUrl={product.base_image.medium_image_url} price={product.name} />
-                                    </Link>
-                                )
-                        }
-                    </Slider>
+                    {
+                        props.data.loading ? <Loader /> :
+                            <Slider {...settings} >
+                                {
+                                    props.data?.apiData?.data?.map(product =>
+                                        <Link
+                                            key={product.sku}
+                                            to={`products/${product.id}`}
+                                        >
+                                            {/* <ProductCard imgUrl={product.base_image.medium_image_url} price={product.name} /> */}
+                                            <div className="fps-container">
+                                                <div className="fps-inner">
+                                                    <div className="fps-img-wrapper">
+                                                        <img src={product.base_image.medium_image_url} alt="product" />
+                                                    </div>
+                                                    <div className="fps-info">
+                                                        <p>{product.name}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    )
+                                }
+                            </Slider>
+                    }
                 </div>
             </div>
         </div>
