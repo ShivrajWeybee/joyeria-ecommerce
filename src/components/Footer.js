@@ -6,13 +6,7 @@ export const Footer = () => {
             <div className="page-width footer-wrapper">
                 <div className="f-1 f">
                     <div><p className='logo'>Joyería</p></div>
-                    <p>Joyería is a women's clothing store with new trendy and affordable arrivals dropping 2-3 times weekly. Shop the latest trends in women's fashion dresses, tops, sweaters, skirts, jeans, accessories & more.At Dress Up, you can shop at one of the 16 locations across the southeast, or online 24/7 at ShopJoyería.com.</p>
-                    <div className="f-1-2 f">
-                        <i className="fa-brands fa-instagram"></i>
-                        <i className="fa-brands fa-square-facebook"></i>
-                        <i className="fa-brands fa-twitter"></i>
-                        <i className="fa-brands fa-pinterest"></i>
-                    </div>
+                    <p className="f-1-p">Joyería is a women's clothing store with new trendy and affordable arrivals dropping 2-3 times weekly. Shop the latest trends in women's fashion dresses, tops, sweaters, skirts, jeans, accessories & more.At Dress Up, you can shop at one of the 16 locations across the southeast, or online 24/7 at ShopJoyería.com.</p>
                 </div>
                 <div className="f-2 f">
                     <div className="flex f-2-1">
@@ -37,6 +31,12 @@ export const Footer = () => {
                             <i className="fa-solid fa-envelope"></i>
                         </div>
                     </div>
+                </div>
+                <div className="f-3 f">
+                    <i className="fa-brands fa-instagram"></i>
+                    <i className="fa-brands fa-square-facebook"></i>
+                    <i className="fa-brands fa-twitter"></i>
+                    <i className="fa-brands fa-pinterest"></i>
                 </div>
                 <div className="flex f-4">
                     <p>Joyería @2022</p>

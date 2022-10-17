@@ -47,7 +47,7 @@ function Home(props) {
                 <p className="section-heading section-container">Fetured Colletion</p>
                 <CollectionImage />
             </div>
-            <div className="section-container">
+            <div>
                 <div className="type-1-image page-width">
                     <OneImage />
                 </div>

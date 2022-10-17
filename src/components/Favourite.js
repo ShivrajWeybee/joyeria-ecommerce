@@ -12,7 +12,7 @@ function Favourite({ loading, favouriteData, removeFavourite }) {
                 {
                     favouriteData.length === 0 ?
                         <div>
-                            <p>"There's no item in your Favourite list.."</p>
+                            <p>There's no item in your Favourite list..</p>
                             <p><Link to='/products' className="go-to-shoping">Go to shoping</Link></p>
                         </div>
                         : favouriteData.map((item, index) =>

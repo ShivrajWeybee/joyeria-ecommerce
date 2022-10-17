@@ -3,8 +3,10 @@
     padding-bottom: 1rem;
     border-bottom: 0.01rem solid rgba(180, 180, 180, 0.247);
 }
+
 .category-menu ul {
     margin: 0;
+    position: relative;
 }
 
 .category-menu ul li {
@@ -15,13 +17,15 @@
     cursor: pointer;
     transition: 0.24s ease-in-out;
     line-height: 3rem;
+    border-bottom: 1px solid transparent;
 }
+
 .category-menu ul li:hover {
     border-bottom: 1px solid black;
     font-weight: 700;
 }
 
-.dropdown-menu {
+.category-menu .dropdown-menu {
     z-index: 1000;
     border-top: 0.01rem solid rgba(180, 180, 180, 0.247);
     display: none;
@@ -35,29 +39,31 @@
     font-weight: 400;
     box-shadow: rgba(0, 0, 0, 0.100) 0px 3px 5px;
 }
-.dropdown-inner {
-    width: 50%;
+
+.category-menu .dropdown-inner {
+    width: 75%;
     margin: 0 auto;
 }
-.dropdown-inner a p {
+
+.category-menu .dropdown-inner a p {
     transition: 0.1s ease-in-out;
 }
-.dropdown-inner a {
+
+.category-menu .dropdown-inner a {
     color: black;
     text-decoration: none;
     font-family: var(--primary-font);
     transition: 0.1s ease-in-out;
 }
-.dropdown-inner a:hover p{
+
+.category-menu .dropdown-inner a:hover p {
     transform: scale(1.01, 1);
 }
+
 .category-menu ul li:hover .dropdown-menu {
     display: block;
 }
-.close-toggle {
-    float: right;
-    margin: 0 1rem 0 0;
-}
+
 .mobile-nav-backdrop {
     display: none;
     position: fixed;
@@ -68,15 +74,46 @@
     background-color: rgba(139, 139, 139, 0.432);
 }
 
+.m-link-wrapper {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--primary-color);
+}
+.m-link-wrapper:last-child {
+    border: none;
+}
+.m-link-wrapper button {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: 700;
+}
+.m-link-wrapper button::after {
+    content: "+";
+    float: right;
+    display: block;
+}
+.m-link-wrapper .dropdown-inner {
+    margin: 1rem 0 0 0;
+}
+.m-link-wrapper .dropdown-plus {
+    float: right;
+    font-size: 18px;
+}
+
 @media screen and (max-width: 1240px) {
     .category-menu ul li {
         padding: 0 1rem;
     }
 }
+
 @media screen and (max-width: 850px) {
     .category-menu ul {
         justify-content: space-between;
     }
+
     .category-menu ul li {
         padding: 0 0.5rem;
     }
@@ -84,41 +121,62 @@
 
 @media screen and (max-width: 768px) {
     .category-menu {
-        padding-top: 1rem;
-        position: absolute;
-        top: 0;
-        width: 200px;
-        height: 100vh;
-        background-color: white;
-        z-index: 111;
+        display: none;
     }
-    .category-menu ul {
-        margin-top: 3rem;
-        z-index: 1111;
-        display: block;
-    }
-    .category-menu ul li {
-        border-bottom: 1px solid rgb(182, 182, 182);
-    }
-    .category-menu ul li::after {
-        content: '+';
-        color: var(--primary-color);
-        float: right;
-    }
-    .dropdown-menu {
-        display: block;
-        max-height: 0;
-        overflow: hidden;
-        padding: 0;
-    }
-    .dropdown-inner {
-        width: 95%;
-    }
-    .mobile-nav-backdrop {
-        display: block;
-    }
-    .close-toggle:focus ~ .category-menu {
-    display: none;
-}
 }
 
+.mobile-cat-menu {
+    position: absolute;
+    width: 100%;
+    background-color: var(--background-color);
+    z-index: 111;
+
+}
+
+.mobile-cat-menu .mcm {
+    display: block;
+    /* padding-top: 1rem; */
+    /* position: absolute; */
+    /* top: 0; */
+    /* width: 200px; */
+    height: 100vh;
+    background-color: white;
+    z-index: 111;
+    position: relative;
+}
+
+.mobile-cat-menu .mcm nav {
+    width: 100%;
+    position: absolute;
+}
+
+.mobile-cat-menu .mcm ul {
+    z-index: 1111;
+    display: block;
+}
+
+.mobile-cat-menu .mcm ul li {
+    border-bottom: 1px solid rgb(182, 182, 182);
+}
+
+.mobile-cat-menu .mcm ul li::after {
+    content: '+';
+    color: var(--primary-color);
+    float: right;
+}
+
+.mobile-cat-menu .dropdown-menu {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.mobile-cat-menu .dropdown-inner {
+    width: 95%;
+}
+
+.mobile-nav-backdrop {
+    display: block;
+    display: none;
+}

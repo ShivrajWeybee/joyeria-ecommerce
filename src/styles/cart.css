@@ -99,3 +99,30 @@
     font-size: 20px;
     padding: 1rem 2rem;
 }
+
+@media screen and (max-width: 768px) {
+    .cart-page {
+        min-width: 350px;
+        max-width: 350px;
+    }
+}
+@media screen and (max-width: 540px) {
+    .cart-page {
+        min-width: 300px;
+        max-width: 300px;
+    }
+    .cart-item-title {
+        font-size: 12px;
+    }
+    .all-cart-items {
+        padding: 0.5rem;
+    }
+    .cart-item-container img {
+        margin-right: 0.5rem;
+    }
+    .add-remove {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem 0;
+    }
+}

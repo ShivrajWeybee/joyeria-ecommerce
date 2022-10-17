@@ -30,28 +30,27 @@ function FeturedProductSlider(props) {
                 <div className='homepage_product-slider'>
                     {
                         props.data.loading ? <Loader /> :
-                            <Slider {...settings} >
-                                {
-                                    props.data?.apiData?.data?.map(product =>
-                                        <Link
-                                            key={product.sku}
-                                            to={`products/${product.id}`}
-                                        >
-                                            {/* <ProductCard imgUrl={product.base_image.medium_image_url} price={product.name} /> */}
-                                            <div className="fps-container">
-                                                <div className="fps-inner">
-                                                    <div className="fps-img-wrapper">
-                                                        <img src={product.base_image.medium_image_url} alt="product" />
-                                                    </div>
-                                                    <div className="fps-info">
-                                                        <p>{product.name}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    )
-                                }
-                            </Slider>
+                            // <Slider {...settings} >
+                            // {
+                            props.data?.apiData?.data?.map(product => console.log("hjkli")
+                                // <Link
+                                //     key={product.sku}
+                                //     to={`products/${product.id}`}
+                                // >
+                                //     <div className="fps-container">
+                                //         <div className="fps-inner flex">
+                                //             <div className="fps-img-wrapper">
+                                //                 <img src={product.base_image.medium_image_url} alt="product" />
+                                //             </div>
+                                //             <div className="fps-info">
+                                //                 <p>{product.name}</p>
+                                //             </div>
+                                //         </div>
+                                //     </div>
+                                // </Link>
+                            )
+                        // }
+                        // </Slider>
                     }
                 </div>
             </div>

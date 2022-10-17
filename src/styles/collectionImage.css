@@ -15,6 +15,7 @@
 
 .type-1-image {
     object-fit: contain;
+    margin-top: 2rem;
 }
 .type-1-image img {
     width: 100%;
@@ -34,6 +35,6 @@
 
 @media screen and (max-width: 1240px) {
     .collection-container {
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
     }
 }

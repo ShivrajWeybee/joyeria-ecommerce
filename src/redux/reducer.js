@@ -1,4 +1,4 @@
-import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER, ONE_IMAGE, TWO_IMAGE, ADD_TO_FAVOURITE, REMOVE_TO_FAVOURITE, OPEN_CART, CLOSE_CART, SET_TOTAL } from "./actionTypes";
+import { FETCH_API_REQUEST, FETCH_API_SUCCESS, FETCH_API_FAILURE, FETCH_CATEGORY, FETCH_PRODUCT, FETCH_PRODUCTS_FROM_CATEGORY, FETCH_HOMEPAGE_BANNER, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART, COLLECTION_BANNER, ONE_IMAGE, TWO_IMAGE, ADD_TO_FAVOURITE, REMOVE_TO_FAVOURITE, OPEN_CART, CLOSE_CART, SET_TOTAL, OPEN_NAV, CLOSE_NAV } from "./actionTypes";
 
 const initialState = {
     loading: true,
@@ -16,6 +16,7 @@ const initialState = {
     twoImage: [],
     isCartOpen: false,
     total: 0,
+    isNavOpen: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -159,6 +160,18 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isCartOpen: false,
+            }
+
+        case OPEN_NAV:
+            return {
+                ...state,
+                isNavOpen: !state.isNavOpen,
+            }
+
+        case CLOSE_NAV:
+            return {
+                ...state,
+                isNavOpen: false,
             }
 
         default:

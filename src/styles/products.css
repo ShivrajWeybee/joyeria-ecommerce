@@ -1,6 +1,6 @@
 .all-products_container {
     display: grid;
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
     justify-content: center;
     align-items: center;
     gap: 2rem 0;
@@ -8,6 +8,7 @@
 
 .all-products_container a {
     width: 300px;
+    height: 100%;
     place-self: center;
     text-decoration: none;
     font-family: var(--primary-font);
@@ -32,5 +33,15 @@
 @media screen and (max-width: 767px) {
     .all-products_container {
         grid-template-columns: repeat(2, minmax(30px, 1fr));
+    }
+}
+@media screen and (max-width: 540px) {
+    .all-products_container a {
+        width: 145px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .all-products_container {
+        gap: 1rem 0;
     }
 }

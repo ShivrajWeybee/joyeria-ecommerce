@@ -2,12 +2,27 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
-import { fetchApis, fetchCategory } from '../redux/action'
+import { closeMobileNav, fetchApis, fetchCategory, openMobileNav } from '../redux/action'
 
-export const CategoryMenu = ({ loading, categoryItem, fetchCatagory }) => {
+export const CategoryMenu = ({ openNav, openTheNav, closeTheNav }) => {
 
     const [cat, setCat] = useState([])
     const [catNest, setCatNest] = useState([])
+
+    const [width, setWidth] = React.useState(window.innerWidth);
+    const breakpoint = 769;
+
+    useEffect(() => {
+        const handleWindowResize = () => setWidth(window.innerWidth)
+        window.addEventListener("resize", handleWindowResize);
+
+        if (width > breakpoint) {
+            closeTheNav()
+        }
+
+        // Return a function from the effect that removes the event listener
+        return () => window.removeEventListener("resize", handleWindowResize);
+    }, [window.innerWidth]);
 
     useEffect(() => {
         axios
@@ -21,20 +36,44 @@ export const CategoryMenu = ({ loading, categoryItem, fetchCatagory }) => {
     }, [])
 
     return (
-        <>
+        <div className={`${width < breakpoint && openNav ? "mobile-cat-menu" : ""}`}>
             <div className="mobile-nav-backdrop"></div>
-            <div className='category-menu'>
-                <div className="mobile-icon close-toggle">X</div>
-                <nav className='page-width'>
+            <div className={`category-menu page-width ${width < breakpoint && openNav ? "mcm" : ""}`}>
+                <nav>
                     <ul className='flex'>
                         {
                             cat.length === 0 ? 'loading' :
                                 cat.data.map((cat, index) =>
-                                    <li key={index} value={cat.id}>
-                                        {cat.name}
-                                        {
-                                            cat.children.length > 0 ?
-                                                <div key={index} className='dropdown-menu'>
+                                    !openNav ?
+                                        <li key={index} value={cat.id}>
+                                            {cat.name}
+                                            {
+                                                cat.children.length > 0 ?
+                                                    <div key={index} className='dropdown-menu'>
+                                                        <div className='dropdown-inner'>
+                                                            {
+                                                                cat.children?.map((nest, index) =>
+                                                                    <Link
+                                                                        key={index}
+                                                                        to={`/products?category_id=${nest.id}`}
+                                                                    >
+                                                                        <p>{nest.name}</p>
+                                                                    </Link>
+                                                                )
+                                                            }
+                                                        </div>
+                                                    </div> : ''
+                                            }
+                                        </li> :
+                                        width < breakpoint &&
+                                        <div className="m-link-wrapper" id="accordion" key={index}>
+                                            <div id={`heading${index}`}>
+                                                <button data-toggle="collapse" data-target={`#collapse${index}`} aria-expanded="true" aria-controls={`collapse${index}`}>
+                                                    {cat.name}
+                                                </button>
+                                            </div>
+                                            <div id={`collapse${index}`} className="collapse" aria-labelledby={`heading${index}`} data-parent="#accordion">
+                                                <div>
                                                     <div className='dropdown-inner'>
                                                         {
                                                             cat.children?.map((nest, index) =>
@@ -47,31 +86,31 @@ export const CategoryMenu = ({ loading, categoryItem, fetchCatagory }) => {
                                                             )
                                                         }
                                                     </div>
-                                                </div> : ''
-                                        }
-                                    </li>
+                                                </div>
+                                            </div>
+                                        </div>
                                 )
                         }
                     </ul>
                 </nav>
             </div>
-        </>
+        </div>
     )
 }
 
-export default CategoryMenu
+// export default CategoryMenu
 
-// const mapStateToProps = (state) => {
-//     return {
-//         loading: state.loading,
-//         categoryItem: state.categoryData,
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        openNav: state.isNavOpen,
+    }
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         fetchCatagory: () => dispatch(fetchCategory('https://kamaraapi.weybee.in/api/categories'))
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        openTheNav: () => dispatch(openMobileNav()),
+        closeTheNav: () => dispatch(closeMobileNav())
+    }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(CategoryMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryMenu)

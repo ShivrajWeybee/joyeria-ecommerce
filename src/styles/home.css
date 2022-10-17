@@ -25,6 +25,23 @@
     height: 350px !important;
   }
 }
+@media screen and (max-width: 768px) {
+  .awssld__wrapper {
+    height: 200px !important;
+  }
+  .section-heading {
+    font-size: 1.5rem;
+    margin: 2rem 0;
+  }
+}
+@media screen and (max-width: 399px) {
+  .awssld__wrapper {
+    height: 150px !important;
+  }
+  .section-heading {
+    font-size: 1rem;
+  }
+}
 
 /* .fetured-cat-parent {
     width: 70%;
