@@ -11,7 +11,6 @@ let valueS;
 function Products({ product, fetchProductOrCategory, addToFavouriteProduct }) {
 
     const [searchParam, setSearchParam] = useSearchParams()
-    // console.log(Object.fromEntries([...searchParam]))
     for (let [key, value] of Object.entries(Object.fromEntries([...searchParam]))) {
         keyS = key;
         valueS = value;
@@ -27,6 +26,10 @@ function Products({ product, fetchProductOrCategory, addToFavouriteProduct }) {
         fetchProductOrCategory()
     }, [searchParam])
 
+    useEffect(() => {
+        console.log("heyy");
+    }, []);
+
     return (
         <div className='page-width section-container'>
             {/* {
@@ -37,17 +40,23 @@ function Products({ product, fetchProductOrCategory, addToFavouriteProduct }) {
                     <div className='all-products_container'>
                         {
                             product && product?.categoryProducts?.data?.length ?
-                                product.categoryProducts.data.map((product, index) =>
+                                product.categoryProducts.data.map((p, index) =>
                                     <Link className="product-card_container">
-                                        <div className="heart-delete"><i className="fa-solid fa-heart" onClick={() => handleAddToFavourite(product.id)}></i></div>
+                                        <div className="heart-delete">
+                                            {
+                                                product.favourite.find(item => item.id === p.id) ?
+                                                    <i className="fa-solid fa-heart" onClick={() => handleAddToFavourite(p.id)}></i>
+                                                    : <i className="fa-regular fa-heart" onClick={() => handleAddToFavourite(p.id)}></i>
+                                            }
+                                        </div>
                                         <Link
                                             key={index}
-                                            to={`${product.id}`}>
+                                            to={`${p.id}`}>
                                             <ProductCard
                                                 isFavourite={false}
-                                                imgUrl={product.base_image.medium_image_url}
-                                                price={product.formated_price}
-                                                pName={product.name}
+                                                imgUrl={p.base_image.medium_image_url}
+                                                price={p.formated_price}
+                                                pName={p.name}
                                             />
                                         </Link>
                                     </Link>

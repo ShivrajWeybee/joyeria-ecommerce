@@ -90,8 +90,11 @@
     background-color: transparent;
     font-weight: 700;
 }
-.m-link-wrapper button::after {
+.m-link-wrapper button.collapsed::after {
     content: "+";
+}
+.m-link-wrapper button::after {
+    content: "-";
     float: right;
     display: block;
 }

@@ -68,7 +68,7 @@ export const CategoryMenu = ({ openNav, openTheNav, closeTheNav }) => {
                                         width < breakpoint &&
                                         <div className="m-link-wrapper" id="accordion" key={index}>
                                             <div id={`heading${index}`}>
-                                                <button data-toggle="collapse" data-target={`#collapse${index}`} aria-expanded="true" aria-controls={`collapse${index}`}>
+                                                <button data-toggle="collapse" data-target={`#collapse${index}`} aria-expanded="true" aria-controls={`collapse${index}`} className="collapsed ">
                                                     {cat.name}
                                                 </button>
                                             </div>
