@@ -17,7 +17,6 @@ function Products({ product, fetchProductOrCategory, addToFavouriteProduct }) {
     }
 
     const handleAddToFavourite = (id) => {
-        console.log("handle favourite worked...")
         product.favourite.length === 0 ? addToFavouriteProduct(product.categoryProducts.data.find(item => item.id === id)) :
             (product.favourite.find(item => item.id === id)) ? console.log('ff') : addToFavouriteProduct(product.categoryProducts.data.find(item => item.id === id))
     }
